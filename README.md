@@ -15,3 +15,31 @@ prime[0]=prime[1]=1;
        if(!prime[i])
            for(int j=i*i;j<=1000000;j+=i) prime[j]=1;
 剩下的也就很好解决了。
+Spreadsheets
+这一题是两种格式的转换。
+RxCy(xy是数字)->yx2(两个y相等，x2由x转换而来)
+要注意的是，如何将两种情况分开。
+一开时，我只注意了R，所以导致字符串的边界超出。
+t[i][0]=='R'&&t[i][1]<='9'&&t[i][1]>='0'
+这样会因后面没有C而RE，所以还需要一些条件。
+bool iff(string s){
+	if (s.size()<4) return 0;
+	int i=0;for (;i<s.size();i++) if (s[i]=='C') break;
+	if (s[0]=='R'&&s[1]<='9'&&s[1]>='0'&&i+1<s.size()&&s[i+1]) return 1;
+	return 0;
+}
+这样就可以避免上述问题。
+下面是如何改变的方法：
+//1->2
+while (a>0)
+	if(a%26!=0){
+		t+=char('A'+a%26-1);
+		a=a/26;
+	}
+	else if(a%26==0){
+		t+='Z';
+		if(a%26==0) a=a/26-1;
+	}//Z是一种特殊情况，分开讨论
+for (int i=0;i<(t.size()+1)/2;i++) swap(t[i],t[t.size()-i-1]);//由于所得结果是反的，所以要反过来
+//2->1
+for (int i=0;i<t.size();i++) a=a*26+t[i]-'A'+1;
