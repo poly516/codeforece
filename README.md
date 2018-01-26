@@ -15,6 +15,7 @@ prime[0]=prime[1]=1;
        if(!prime[i])
            for(int j=i*i;j<=1000000;j+=i) prime[j]=1;
 剩下的也就很好解决了。
+
 Spreadsheets
 这一题是两种格式的转换。
 RxCy(xy是数字)->yx2(两个y相等，x2由x转换而来)
@@ -43,3 +44,6 @@ while (a>0)
 for (int i=0;i<(t.size()+1)/2;i++) swap(t[i],t[t.size()-i-1]);//由于所得结果是反的，所以要反过来
 //2->1
 for (int i=0;i<t.size();i++) a=a*26+t[i]-'A'+1;
+
+
+
